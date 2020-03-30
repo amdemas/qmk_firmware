@@ -1,8 +1,5 @@
 #include QMK_KEYBOARD_H
 #include "lib/lib8tion/lib8tion.h"
-// #ifdef SSD1306OLED
-//   #include "ssd1306.h"
-// #endif
 
 extern uint8_t is_master;
 extern led_config_t g_led_config;
@@ -40,7 +37,6 @@ enum custom_keycodes {
 #define KC_LMOD  RGB_MOD
 #define KC_EEP   EEPROM_RESET
 #define KC_CTAB  LCTL_T(KC_TAB)
-//#define KC_CZ ALT_T(KC_Z)
 #define KC_CZ LCTL_T(KC_Z)
 #define KC_AA ALT_T(KC_A)
 #define KC_AS RALT_T(KC_SCLN)
@@ -57,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        GESC,    AA,     S,     D,     F,     G,                      H,     J,     K,     L,    AS,  QUOT,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LGUI,    CZ,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,    CS,  RGUI,\
+       LGUI,    CZ,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,    CS,  LGUI,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                    CAPS,  LSFT,    LR,       RS,  RSFT,   DEL \
                               //`--------------------'  `--------------------'
@@ -69,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       _____,    F1,    F2,    F3,    F4,    F5,                   LEFT,  DOWN,    UP, RIGHT, XXXXX, _____,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____,    F6,    F7,    F8,    F9,   F10,                  XXXXX, XXXXX, _____, _____, _____, _____,\
+      _____,    F6,    F7,    F8,    F9,   F10,                    F11,   F12, XXXXX, XXXXX, XXXXX, _____,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   _____, _____, LOWER,    RAISE, _____, _____ \
                               //`--------------------'  `--------------------'
@@ -79,23 +75,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
       _____,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN, _____,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____,  UNDS,  PLUS,   EQL,  PIPE,  MINS,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,   GRV,\
+      _____,  UNDS,  PLUS,   EQL,  PIPE,  MINS,                   MUTE,  VOLD,  VOLU,  MNXT, XXXXX,   GRV,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       _____,  BSLS,  LABK,  LCBR,  LPRN,  LBRC,                   RBRC,  RPRN,  RCBR,  RABK,  SLSH, _____,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                  _____, _____, LOWER,    RAISE, _____,   DEL \
+                                  _____, _____, LOWER,    RAISE, _____, _____ \
                               //`--------------------'  `--------------------'
   ),
 
   [_ADJUST] = LAYOUT_kc( \
   //,-----------------------------------------.                ,------------------------------------------.
-        RST, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, _____,\
+        RST, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+-------|
-       CAPS,  LHUI,  LSAI,  LVAI,  LTOG, XXXXX,                   MUTE,  VOLD,  VOLU,  MNXT, XXXXX,   EEP,\
+       CAPS,  LHUI,  LSAI,  LVAI,  LTOG, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,   EEP,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+-------|
-       LMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+      XXXXX,  LMOD,  LHUD,  LSAD,  LVAD, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+-------|
-                                  _____, _____, LOWER,    RAISE, _____,   DEL \
+                                  _____, _____, LOWER,    RAISE, _____, _____ \
                               //`--------------------'  `--------------------'
   )
 };
@@ -171,17 +167,11 @@ void rgb_matrix_layer_helper(uint8_t hue, uint8_t sat, uint8_t val, uint8_t mode
     }
 }
 
-void suspend_power_down_kb(void) { rgb_matrix_set_suspend_state(true); }
+void suspend_power_down_user(void) { rgb_matrix_set_suspend_state(true); }
 
-void suspend_wakeup_init_kb(void) { rgb_matrix_set_suspend_state(false); }
-
-// void suspend_power_down_keymap(void) { rgb_matrix_set_suspend_state(true); }
-
-// void suspend_wakeup_init_keymap(void) { rgb_matrix_set_suspend_state(false); }
+void suspend_wakeup_init_user(void) { rgb_matrix_set_suspend_state(false); }
 
 void rgb_matrix_indicators_user(void) {
-    rgb_matrix_layer_helper(HSV_CYAN, 0, rgb_matrix_config.speed, LED_FLAG_KEYLIGHT);
-    rgb_matrix_layer_helper(HSV_CYAN, 0, rgb_matrix_config.speed, LED_FLAG_MODIFIER);
     switch (biton32(layer_state)) {
         case _RAISE:
             rgb_matrix_layer_helper(HSV_BLUE, 1, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
@@ -193,13 +183,14 @@ void rgb_matrix_indicators_user(void) {
             rgb_matrix_layer_helper(HSV_RED, 1, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
             break;
         default:
-            //rgb_matrix_layer_helper(HSV_CYAN, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
             break;
     }
 }
 
 void matrix_scan_rgb(void) {
     if (has_initialized) {
+        rgb_matrix_layer_helper(HSV_CYAN, 0, rgb_matrix_config.speed, LED_FLAG_KEYLIGHT);
+        rgb_matrix_layer_helper(HSV_CYAN, 0, rgb_matrix_config.speed, LED_FLAG_MODIFIER);
         rgb_matrix_layer_helper(HSV_CYAN, 0, rgb_matrix_config.speed, LED_FLAG_UNDERGLOW);
     }
 }
@@ -281,11 +272,11 @@ void update_log(void) {
 void oled_task_user(void) {
     if (timer_elapsed(oled_timer) > 30000) {
         oled_off();
-        rgb_matrix_set_suspend_state(true);
+        rgb_matrix_disable_noeeprom();
         return;
     } else {
         oled_on();
-        rgb_matrix_set_suspend_state(false);
+        rgb_matrix_enable_noeeprom();
     }
     update_log();
     if (is_master) {
@@ -296,7 +287,6 @@ void oled_task_user(void) {
 }
 #endif
 
-// Setting ADJUST layer RGB back to default
 void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
   if (IS_LAYER_ON(layer1) && IS_LAYER_ON(layer2)) {
     layer_on(layer3);
@@ -347,6 +337,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             break;
+        case KC_EEP:
+            break;
         // case UC_FLIP:  // (ノಠ痊ಠ)ノ彡┻━┻
         //     if (record->event.pressed) {
         //         send_unicode_hex_string("0028 30CE 0CA0 75CA 0CA0 0029 30CE 5F61 253B 2501 253B");
@@ -363,7 +355,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void keyboard_post_init_user(void) {
 #ifdef RGB_MATRIX_ENABLE
-    layer_state_set_user(layer_state);
+    //layer_state_set_user(layer_state);
     uint16_t old_hue = 128; // CYAN Hue
     rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
     for (uint16_t i = 255; i > 0; i--) {

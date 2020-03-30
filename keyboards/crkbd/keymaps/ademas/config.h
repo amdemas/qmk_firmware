@@ -130,6 +130,7 @@
 #endif
 
 #ifdef OLED_DRIVER_ENABLE
+#   define OLED_TIMEOUT 0
 #   define OLED_FONT_H "keyboards/crkbd/keymaps/ademas/glcdfont.c"
 #   define OLED_DISABLE_TIMEOUT
 #endif
