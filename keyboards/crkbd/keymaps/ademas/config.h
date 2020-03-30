@@ -8,6 +8,9 @@
 
 #define FORCE_NKRO
 
+#undef PRODUCT
+#define PRODUCT Corne Keyboard
+
 #ifdef RGBLIGHT_ENABLE
 #    undef RGBLED_NUM
 #    define RGBLED_NUM 27

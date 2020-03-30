@@ -63,9 +63,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
       _____,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0, _____,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____,    F1,    F2,    F3,    F4,    F5,                   LEFT,  DOWN,    UP, RIGHT, XXXXX, _____,\
+      _____,    F1,    F2,    F3,    F4,    F5,                   LEFT,  DOWN,    UP, RIGHT, _____, _____,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____,    F6,    F7,    F8,    F9,   F10,                    F11,   F12, XXXXX, XXXXX, XXXXX, _____,\
+      _____,    F6,    F7,    F8,    F9,   F10,                    F11,   F12, _____, _____, _____, _____,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
                                   _____, _____, LOWER,    RAISE, _____, _____ \
                               //`--------------------'  `--------------------'
@@ -85,9 +85,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT_kc( \
   //,-----------------------------------------.                ,------------------------------------------.
-        RST, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
+        RST, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,   RST,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+-------|
-       CAPS,  LHUI,  LSAI,  LVAI,  LTOG, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,   EEP,\
+        EEP,  LHUI,  LSAI,  LVAI,  LTOG, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,   EEP,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+-------|
       XXXXX,  LMOD,  LHUD,  LSAD,  LVAD, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+-------|
@@ -355,7 +355,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void keyboard_post_init_user(void) {
 #ifdef RGB_MATRIX_ENABLE
-    //layer_state_set_user(layer_state);
+    layer_state_set_user(layer_state);
     uint16_t old_hue = 128; // CYAN Hue
     rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_LIGHT);
     for (uint16_t i = 255; i > 0; i--) {
@@ -363,6 +363,5 @@ void keyboard_post_init_user(void) {
         matrix_scan();
         wait_ms(10);
     }
-    layer_state_set_user(layer_state);
 #endif
 }
