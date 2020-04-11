@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LGUI,    CZ,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,    CS,  LGUI,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                   CAPS,  LSFT,    LR,       RS,  RSFT,   DEL \
+                                    DEL,  LSFT,    LR,       RS,  RSFT,   DEL \
                               //`--------------------'  `--------------------'
   ),
 
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
       _____,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN, _____,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      _____,  UNDS,  PLUS,   EQL,  PIPE,  MINS,                   MUTE,  VOLD,  VOLU,  MNXT, XXXXX,   GRV,\
+      _____,  UNDS,  PLUS,   EQL,  PIPE,  MINS,                    END,PGDOWN,  PGUP,  HOME, XXXXX,   GRV,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       _____,  BSLS,  LABK,  LCBR,  LPRN,  LBRC,                   RBRC,  RPRN,  RCBR,  RABK,  SLSH, _____,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,------------------------------------------.
         RST, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,   RST,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+-------|
-        EEP,  LHUI,  LSAI,  LVAI,  LTOG, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,   EEP,\
+        EEP,  LHUI,  LSAI,  LVAI,  LTOG, XXXXX,                   MUTE,  VOLD,  VOLU,  MNXT, XXXXX,   EEP,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+-------|
       XXXXX,  LMOD,  LHUD,  LSAD,  LVAD, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+-------|
